@@ -1,5 +1,3 @@
-# Polymed-HealGen
-
 # PolyMed Care Portal (HealGen)
 
 **PolyMed Care Portal** is a health-literacy and caregiver-support web application built for **SparkX 2026–27 (Theme S2: HealGen – Accessible Healthcare & Diagnostics)**. Designed with a safety-first, non-diagnostic approach, it helps patients, family caregivers, and elderly users make sense of medical prescriptions, medicine strips, and imaging scans in everyday language—while flagging potential active-salt overlaps and preparing clear questions for doctor visits.
