@@ -88,3 +88,136 @@ Download & Print Button: Exports a standalone, print-optimized polymed_fridge_ca
 Bonus Multi-Prescription "Home Medicine Cabinet" Mode:
 
 Allow saving scanned prescriptions to a persistent local "Home Medicine Cabinet" so caregivers can cross-check active-salt overlaps and cumulative daily dosages across multiple doctors' prescriptions at once.
+
+
+
+
+
+
+ 
+
+Which Gemini key should power the built-in scanning so visitors need zero setup?
+
+My own Gemini key
+
+When the first Gemini model is busy or fails, what should the visitor see?
+
+Switch models silently
+
+Any additional info?
+
+is it possible to switch to the emergent API if the google API fails in like 5 secs
+
+
+
+
+
+
+
+
+
+
+
+
+Queue all (user approved all four builder suggestions): A. Per-Medicine Dose Log: let caregivers mark each medicine taken separately, so a skipped tablet in a slot is visible. B. Auto Re-Explain: rewrite the report automatically when language or level changes, no extra tap needed. C. Faster Backup Scans: reduce wait time when Google is busy and the Emergent backup key takes over. D. Refill Countdown: show days of medicine remaining and warn the family two days before the course ends.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cabinet Countdown: Show days left for every saved prescription inside the Medicine Cabinet, so all doctors' courses are tracked in one place
+
+Missed Dose Nudge: Show a gentle reminder on the schedule when a slot's time has passed and medicines are still unmarked
+
+Fridge Card Image: Let families save the fridge card as a picture to share on WhatsApp straight from the phone
+
+Larger Text Mode: Add a one-tap bigger-text button so elderly users can read the schedule without zooming on a phone
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Apply these focused UI/UX and feature updates to the existing PolyMed Care Portal app (keep the existing Gemini API/model setup unchanged, and skip the automated browser testing agent after building to save credits — just verify the build compiles cleanly):
+Part A — Bug Fixes & UI/UX Polish
+Fix WhatsApp Share on Desktop/Web: Replace api.whatsapp.com links with https://web.whatsapp.com/send?text=... (opened with target="_blank" rel="noopener noreferrer") AND automatically copy the formatted WhatsApp summary to the user's clipboard with a "Copied! Ready to paste in WhatsApp" toast so it works seamlessly even if WhatsApp Web is blocked in an iframe or browser.
+Translate ALL Dosage & Duration Strings When Language Changes: When switching to Hindi, Kannada, Tamil, Malayalam, Telugu, or Marathi, ensure every schedule dosage instruction and duration tag (such as "1 tablet", "2 teaspoonfuls mixed in one glass of water", "(for 5 days)", "(continue until told otherwise — confirm)") is also translated into the selected regional language—never left in English.
+Move Disclaimer Banner to Bottom & Make It Slim: Remove the thick orange banner from the top of the screen and place it as a compact, single-line subtle footer notice at the bottom so the main workspace loads right at the top.
+Explain Simple | Standard | Detailed + True Site-Wide Simple Mode:
+Show a clear 1-line description right below the Simple | Standard | Detailed toggle (e.g., Simple: Plain everyday words across the whole website for elderly users, Standard: Clear family guide + ingredient names, Detailed: Full medical context).
+When Simple is selected, simplify the entire website's UI copy too—replace terms like "blister strips" with "tablet packets", "active salts" with "main ingredients", and "pharmacological" with "medicine details".
+Add A- / A+ Text Size Buttons: Add compact A- and A+ font-scaling buttons in the top bar (adjusting root font size smoothly between 14px, 16px, 18px, and 20px) for elderly readability.
+Show Scanned Source Prescription in Demo Mode: When "Load Demo Sample" is clicked, generate and display a realistic sample Indian prescription + medicine strip preview image with a "View Scanned Source Prescription" thumbnail/modal so judges can compare the raw prescription directly against the extracted schedule.
+Explain Jan Aushadhi & Add Pill SVG Icons:
+Next to "Jan Aushadhi / generic salt", add a (?) info tooltip/popover stating: "Jan Aushadhi Kendras are Govt. of India pharmacies selling quality-tested generic medicines with the exact same main ingredient at 50–80% lower cost."
+Next to "Looks like:" on each medicine card, render a small inline SVG icon matching the pill's shape and color.
+Make Medicine Cabinet Self-Explanatory:
+Show a dismissible 1-time welcome card the first time the Medicine Cabinet opens explaining what it does ("Save prescriptions from different doctors here to check if total daily ingredients overlap across your whole home cabinet"), plus a permanent (i) info button in the cabinet header.
+Change the save input placeholder to "Nickname this prescription (e.g., Dad's Fever Slip)".
+Part B — 3 Standout Competition Features
+Doctor-Visit 30-Second Summary ("Clinic Mode"): Inside the Medicine Cabinet, add a "30-Sec Doctor Summary" button that opens a clean, high-contrast 1-screen "Current Medications List" card (showing active ingredients, daily totals, and start dates) designed to hand directly to a doctor during a quick OPD consultation.
+"Missed Dose — What Should I Do?" Simulator: On every schedule row and medicine card, add a "Missed a dose?" button that opens a clear, safe timing guide (explaining general rules like taking as soon as remembered unless the next scheduled dose is within 2 hours, never doubling up, and flagging antibiotics/critical meds to confirm with a pharmacist).
+1-Tap WhatsApp Refill Alert on Low-Stock Medicines: In the Medicine Cabinet course countdown, next to any medicine with Days left <= 2, add a "Remind Family to Refill" button (opening web.whatsapp.com + copying to clipboard) pre-filled with the medicine name, active salt, and remaining days.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Make two tiny header label additions only (keep everything else unchanged and skip the automated browser testing agent to save credits):
+1. Above the Simple | Standard | Detailed pill toggle in the top header, add a subtle uppercase micro-label: "Explanation Depth:" (or "Language Simplicity:").
+2. Above the A- | A+ pill button in the top header, add a matching subtle uppercase micro-label: "Text Size:".
+
+
+
+
+
+
+
+
+
+
+
+
+Add a new "Scan & Explain (X-Ray / MRI)" tab in PolyMed Care Portal while keeping all existing features and UI intact (skip the automated browser testing agent to save credits):
+1. Immediate Disclaimer Pop-Up on Tab Open + Persistent "i" Info Button:
+   - As soon as the user opens the "Scan & Explain (X-Ray / MRI)" tab, automatically display a clean pop-up modal disclaimer with an "I Understand & Continue" button:
+     "Health Literacy & Educational Aid Only — This tool explains medical terms and general visual notes in plain language. It does NOT diagnose conditions, determine causes, or replace a radiologist or doctor. Always confirm results with a licensed physician."
+   - Do NOT put a bulky warning banner across the top of the tab. Instead, place a subtle circular "i" info button in the tab header (matching the Medicine Cabinet style) that re-opens this exact disclaimer pop-up whenever clicked.
+2. Image Upload, View-Type Selector & Image Quality Check:
+   - Include a quick scan-type selector (X-Ray / MRI / Auto-Detect) and an optional body-region/view note field (e.g., Chest, Knee, Spine) plus a 1-tap "Load Demo X-Ray/MRI Sample" button so evaluators can test without uploading a file.
+   - Before or alongside generating the explanation, run an Image Quality & Clarity Check: if the uploaded photo is blurry, heavily glared, cropped, or missing visible labels/orientation markers, display a clear gentle notice ("Low image clarity or cropped view detected — visual notes may be incomplete; bring the original film or DICOM report to your doctor") while still showing safe educational explanations.
+3. Safe Plain-Language Output & Doctor Checklist:
+   - Return structured, plain-language output strictly in these three sections (never diagnosing or guessing causes):
+     * "Terms & Areas Mentioned" (plain-language explanation of anatomical regions or labels visible)
+     * "General Educational Notes" (neutral, non-diagnostic visual observations for understanding)
+     * "Questions to Ask Your Doctor" (3–5 checkable questions a patient or caregiver can bring to their appointment, with a 1-tap "Copy Questions for Doctor" button)
+   - Respect the active Explanation Depth (Simple / Standard / Detailed), Larger Text Mode (A- / A+), and selected language.
+  
+
+
